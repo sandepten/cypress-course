@@ -16,4 +16,11 @@ describe('Various examples', () => {
     cy.getByTestId('nav-examples').click();
     cy.location('pathname').should('eq', '/examples');
   });
+
+  it.only('intercepts', () => {
+    cy.intercept('POST', 'http://localhost:3000/examples', {
+      fixture: 'example.json',
+    });
+    cy.getByTestId('post-button').click();
+  });
 });
